@@ -1,22 +1,23 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {Box, Button, FormControl, IconButton, TextField} from '@material-ui/core';
-import {AddBox} from '@material-ui/icons';
+import {IconButton, TextField} from '@mui/material';
+import {AddBox} from '@mui/icons-material';
+
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
     disabled?: boolean
 }
 
-export const AddItemForm = React.memo(function({addItem, disabled = false}: AddItemFormPropsType) {
-    let [title, setTitle] = useState("");
+export const AddItemForm = React.memo(function ({addItem, disabled = false}: AddItemFormPropsType) {
+    let [title, setTitle] = useState('');
     let [error, setError] = useState<string | null>(null);
 
     const addItemHandler = () => {
-        if (title.trim() !== "") {
+        if (title.trim() !== '') {
             addItem(title);
-            setTitle("");
+            setTitle('');
         } else {
-            setError("Title is required");
+            setError('Title is required');
         }
     }
 
@@ -34,17 +35,18 @@ export const AddItemForm = React.memo(function({addItem, disabled = false}: AddI
     }
 
     return <div>
-        <TextField variant="outlined"
-                   disabled={disabled}
-                   error={!!error}
-                   value={title}
-                   onChange={onChangeHandler}
-                   onKeyPress={onKeyPressHandler}
-                   label="Title"
-                   helperText={error}
+        <TextField
+            variant="outlined"
+            disabled={disabled}
+            error={!!error}
+            value={title}
+            onChange={onChangeHandler}
+            onKeyDown={onKeyPressHandler}
+            label="Title"
+            helperText={error}
         />
         <IconButton color="primary" onClick={addItemHandler} disabled={disabled}>
-            <AddBox />
+            <AddBox/>
         </IconButton>
     </div>
 })

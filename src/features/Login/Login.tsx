@@ -1,13 +1,13 @@
 import React from 'react'
-import {Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Button, Grid} from '@material-ui/core'
 import {useFormik} from 'formik'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {loginTC} from './auth-reducer'
-import {AppRootStateType} from '../../app/store'
-import {Redirect} from 'react-router-dom'
+import {AppRootStateType, useAppDispatch} from '../../app/store'
+import {Navigate} from 'react-router-dom';
+import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField} from '@mui/material';
 
 export const Login = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch();
 
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn);
 
@@ -36,18 +36,17 @@ export const Login = () => {
     })
 
     if (isLoggedIn) {
-        return <Redirect to={"/"}/>
+        return <Navigate to={"/"}/>
     }
 
 
-    return <Grid container justify="center">
+    return <Grid container justifyContent="center">
         <Grid item xs={4}>
             <form onSubmit={formik.handleSubmit}>
                 <FormControl>
                     <FormLabel>
                         <p>
-                            To log in get registered <a href={'https://social-network.samuraijs.com/'}
-                                                        target={'_blank'}>here</a>
+                            To log in get registered <a href={'https://social-network.samuraijs.com/'}>here</a>
                         </p>
                         <p>
                             or use common test account credentials:
