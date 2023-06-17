@@ -9,22 +9,23 @@ import {Login} from '../features/Login/Login'
 import {logoutTC} from '../features/Login/auth-reducer'
 import {AppBar, Button, CircularProgress, Container, LinearProgress, Toolbar, Typography} from '@mui/material';
 
-// import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar';
+import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar';
 
 
 function App() {
-    const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
-    const isInitialized = useSelector<AppRootStateType, boolean>((state) => state.app.isInitialized)
-    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
-    const dispatch = useAppDispatch()
+    const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status);
+    const isInitialized = useSelector<AppRootStateType, boolean>((state) => state.app.isInitialized);
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(initializeAppTC())
-    }, [])
+    }, []);
 
     const logoutHandler = useCallback(() => {
         dispatch(logoutTC())
-    }, [])
+    }, []);
+    console.log(isInitialized)
 
     if (!isInitialized) {
         return <div
@@ -35,7 +36,7 @@ function App() {
 
     return (
         <div className="App">
-            {/*<ErrorSnackbar/>*/}
+            <ErrorSnackbar/>
             <AppBar position="static" color="primary">
                 <Toolbar style={{display: 'flex', justifyContent: 'end'}}>
                     <Typography variant="h6">
