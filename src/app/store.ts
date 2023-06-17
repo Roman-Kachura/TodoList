@@ -19,22 +19,8 @@ const rootReducer = combineReducers({
 export const store = configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
-    // preloadedState: loadState()
 });
-//
-// function loadState () {
-//     const state = localStorage.getItem('app');
-//     if (!state) {
-//         return rootReducer;
-//     } else {
-//         return JSON.parse(state.toString());
-//     }
-// }
-//
-// store.subscribe(() => {
-//     const state = store.getState();
-//     localStorage.setItem('app', JSON.stringify(state));
-// })
+
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
