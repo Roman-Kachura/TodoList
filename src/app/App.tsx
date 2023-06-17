@@ -25,7 +25,6 @@ function App() {
     const logoutHandler = useCallback(() => {
         dispatch(logoutTC())
     }, []);
-    console.log(isInitialized)
 
     if (!isInitialized) {
         return <div
@@ -33,26 +32,6 @@ function App() {
             <CircularProgress color="secondary"/>
         </div>
     }
-
-    // return (
-    //     <div className="App">
-    //         {/*<ErrorSnackbar/>*/}
-    //         <AppBar position="static" color="primary">
-    //             <Toolbar style={{display: 'flex', justifyContent: 'end'}}>
-    //                 <Typography variant="h6">
-    //                     {isLoggedIn && <Button color="inherit" onClick={logoutHandler}>Log out</Button>}
-    //                 </Typography>
-    //             </Toolbar>
-    //             {status === 'loading' && <LinearProgress color="secondary"/>}
-    //         </AppBar>
-    //         <Container fixed>
-    //             <Routes>
-    //                 <Route path={'/'} element={<TodolistsList/>}/>
-    //                 <Route path={'/login'} element={<Login/>}/>
-    //             </Routes>
-    //         </Container>
-    //     </div>
-    // )
     return (
         <div className="App">
             <ErrorSnackbar/>

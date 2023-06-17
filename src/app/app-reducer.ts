@@ -34,11 +34,13 @@ const slice = createSlice({
             state.error = action.payload.error
         },
         setAppInitializedAC: (state, action: PayloadAction<{ isInitialized: boolean }>) => {
+            console.log(action.payload.isInitialized)
             state.isInitialized = action.payload.isInitialized
         }
     },
     extraReducers: (builder) => {
         builder.addCase(initializeAppTC.fulfilled, (state, action) => {
+            console.log(action.payload.isInitialized)
             state.isInitialized = action.payload.isInitialized;
         })
     }

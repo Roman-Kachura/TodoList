@@ -14,25 +14,27 @@ const rootReducer = combineReducers({
     auth: authReducer
 });
 
-const loadState = () => {
-    const state = localStorage.getItem('app');
-    if (!state) {
-        return rootReducer.toString();
-    } else {
-        return JSON.parse(state.toString());
-    }
-}
+
 
 export const store = configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
-    preloadedState: loadState()
+    // preloadedState: loadState()
 });
-
-store.subscribe(() => {
-    const state = store.getState();
-    localStorage.setItem('app', JSON.stringify(state));
-})
+//
+// function loadState () {
+//     const state = localStorage.getItem('app');
+//     if (!state) {
+//         return rootReducer;
+//     } else {
+//         return JSON.parse(state.toString());
+//     }
+// }
+//
+// store.subscribe(() => {
+//     const state = store.getState();
+//     localStorage.setItem('app', JSON.stringify(state));
+// })
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
